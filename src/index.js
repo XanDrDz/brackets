@@ -1,19 +1,17 @@
 module.exports = function check(str, bracketsConfig) {
-    const brack = "(){}[]"; // перечень скобок
-    let arr = []; // новый массив
-    for (let i=0; i<str.length; i++) {
-        let symb = str[i]; //i - ый символ
-        let ind = brack.indexOf(symb); // поиск символа в скобках
-        if (ind === -1) {
-            continue
-        };
-        if (ind % 2 === 0) {
-            arr.push(ind + 1) 
-        } else {
-            if (arr.pop() !== ind) {
-                return false;
-            }
-        }
-}
-return arr.length === 0;
-} 
+    let arrayBrack = bracketsConfig.map(function(str){return str.join("")});
+    console.log(str)
+    for (let i=0; i < arrayBrack.length; i++){
+      if(str.includes(arrayBrack[i])){
+        str = str.replace(arrayBrack[i], "");
+        i = -1;
+      }
+    }
+      if (str){
+        return false;
+      }else{
+        return true;
+       }
+    }
+
+
